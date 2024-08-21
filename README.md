@@ -1,4 +1,4 @@
-# template
+# bayou
 Generate project files by running:
 - "generate.bat"
 
