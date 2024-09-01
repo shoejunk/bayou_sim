@@ -29,15 +29,23 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 CPMAddPackage(
 	NAME hash
 	GITHUB_REPOSITORY shoejunk/hash
-	#VERSION 6.0.1
+	#VERSION 0.0.1
 	GIT_TAG main
 )
 
-# Add package: shoejunk/hash
+# Add package: shoejunk/ds
 CPMAddPackage(
 	NAME ds
 	GITHUB_REPOSITORY shoejunk/ds
-	#VERSION 6.0.1
+	#VERSION 0.0.1
+	GIT_TAG main
+)
+
+# Add package: shoejunk/math
+CPMAddPackage(
+	NAME math
+	GITHUB_REPOSITORY shoejunk/math
+	#VERSION 0.0.1
 	GIT_TAG main
 )
 
@@ -59,7 +67,7 @@ target_include_directories(
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
-target_link_libraries(${PROJECT_NAME} hash ds)
+target_link_libraries(${PROJECT_NAME} hash ds math)
 
 # the location where the project's version header will be placed should match the project's regular
 # header paths

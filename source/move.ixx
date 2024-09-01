@@ -1,7 +1,8 @@
 export module bayou.move;
-import stk.hash;
 import bayou.board_position;
 import bayou.game_state;
+import stk.hash;
+import stk.ds;
 
 using namespace stk;
 using namespace stk::ds;
@@ -17,7 +18,7 @@ namespace bayou
 		{
 		}
 
-		virtual void get_resulting_game_state(c_game_state& out_game_state) = 0;
+		//virtual void get_resulting_game_state(c_game_state& out_game_state) = 0;
 
 	private:
 		const c_board_position m_from;

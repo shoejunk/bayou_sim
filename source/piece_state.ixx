@@ -12,6 +12,13 @@ namespace bayou
 	export class c_piece_state
 	{
 	public:
+		c_piece_state()
+			: m_piece_type(0)
+			, m_position(0, 0)
+		{
+		}
+
+		c_board_position position() const { return m_position; }
 
 	private:
 		uint16_t m_piece_type;
