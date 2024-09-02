@@ -1,4 +1,4 @@
 @echo off
 pushd build\standalone\
-Debug\Bayou.exe
+Debug\Bayou_sim.exe
 popd

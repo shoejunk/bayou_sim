@@ -1,4 +1,4 @@
-# bayou
+# bayou_sim
 Generate project files by running:
 - "generate.bat"
 
