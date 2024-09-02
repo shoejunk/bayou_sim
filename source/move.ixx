@@ -18,7 +18,8 @@ namespace bayou
 		{
 		}
 
-		//virtual void get_resulting_game_state(c_game_state& out_game_state) = 0;
+		[[nodiscard]] c_board_position from() const { return m_from; }
+		[[nodiscard]] c_board_position to() const { return m_to; }
 
 	private:
 		const c_board_position m_from;

@@ -8,7 +8,7 @@ namespace bayou
 	public:
 		c_board_position(uint8_t x, uint8_t y) : m_x(x), m_y(y) {}
 
-		uint8_t x()
+		uint8_t x() const
 		{
 			return m_x;
 		}
@@ -18,7 +18,7 @@ namespace bayou
 			m_x = x;
 		}
 
-		uint8_t y()
+		uint8_t y() const
 		{
 			return m_y;
 		}

@@ -1,5 +1,6 @@
 export module bayou.game_state;
 import bayou.piece_state;
+import bayou.board_position;
 import stk.ds;
 import std.core;
 import <cassert>;
@@ -12,7 +13,7 @@ namespace bayou
 	{
 	public:
 		static constexpr int num_players = 2;
-		static constexpr int board_size = 8;
+		static constexpr uint8_t board_size = 8;
 		static constexpr int hand_size = 4;
 		static constexpr int max_deck_size = 20;
 
@@ -27,6 +28,18 @@ namespace bayou
 				}
 			}
 			// m_pieces and m_decks will default construct themselves
+		}
+
+		c_piece_state& operator[](const c_board_position& pos)
+		{
+			assert(pos.x() < board_size && pos.y() < board_size);
+			return m_pieces[pos.y()][pos.x()];
+		}
+
+		const c_piece_state& operator[](const c_board_position& pos) const
+		{
+			assert(pos.x() < board_size && pos.y() < board_size);
+			return m_pieces[pos.y()][pos.x()];
 		}
 
 		// Getters and setters for steam
@@ -49,10 +62,17 @@ namespace bayou
 			return m_pieces[y][x];
 		}
 
-		void set_piece(int x, int y, const c_piece_state& piece)
+		void set_piece(int x, int y, c_piece_state const& piece)
 		{
 			assert(x >= 0 && x < board_size && y >= 0 && y < board_size);
 			m_pieces[y][x] = piece;
+		}
+
+		void move_piece(c_board_position from, c_board_position to)
+		{
+			(*this)[to] = (*this)[from];
+			(*this)[from] = c_piece_state::nil;
+			(*this)[to].move(to);
 		}
 
 		// Getter and setter for hands

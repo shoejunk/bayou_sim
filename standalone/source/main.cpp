@@ -14,9 +14,9 @@ int main()
 	c_board_position board_position(3, 6);
 	uint8_t x = board_position.x();
 	c_piece rook("rook");
-	c_piece_state my_rook;
-	c_abl_slide slide(0b00000001);
-	std::vector<c_move> moves;
-	slide.get_moves(my_rook, game_state, moves);
+	game_state[{0, 0}] = { 1, 0, {0, 0} };
+	c_abl_slide slide(0b11111111);
+	c_game_state new_game_state;
+	slide.try_move({ {0, 0}, {2, 2} }, game_state, new_game_state);
 	return 0;
 }
