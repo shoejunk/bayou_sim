@@ -1,6 +1,5 @@
 export module bayou.move;
 import bayou.board_position;
-import bayou.game_state;
 import stk.hash;
 import stk.ds;
 

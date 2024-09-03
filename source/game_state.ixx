@@ -1,6 +1,7 @@
 export module bayou.game_state;
 import bayou.piece_state;
 import bayou.board_position;
+import bayou.piece_library;
 import stk.ds;
 import std.core;
 import <cassert>;
@@ -17,7 +18,8 @@ namespace bayou
 		static constexpr int hand_size = 4;
 		static constexpr int max_deck_size = 20;
 
-		c_game_state()
+		c_game_state(c_piece_library const& library)
+			: m_library(library)
 		{
 			for (int i = 0; i < num_players; ++i)
 			{
@@ -122,7 +124,14 @@ namespace bayou
 			return drawn_card;
 		}
 
+
+		c_piece_state& place_piece(uint16_t piece_type, uint8_t owner, c_board_position pos)
+		{
+			(*this)[pos] = c_piece_state(piece_type, owner, pos);
+		}
+
 	private:
+		c_piece_library const& m_library;
 		uint8_t m_steam[num_players];
 		c_piece_state m_pieces[board_size][board_size];
 		uint16_t m_hands[num_players][hand_size];
