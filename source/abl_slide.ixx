@@ -1,8 +1,8 @@
 export module bayou.abl_slide;
-import bayou.piece_state;
 import bayou.game_state;
-import bayou.board_position;
 import bayou.ability;
+import bayou.piece_state;
+import bayou.board_position;
 import bayou.move;
 import stk.math;
 import std.core;
@@ -169,9 +169,10 @@ namespace bayou
 			// Check if the path is clear
 			for (int i = 1; i < steps; ++i)
 			{
-				int x = from.x() + i * step_x;
-				int y = from.y() + i * step_y;
-				if (!game_state.get_piece(x, y).is_nil())
+				int x = (int)from.x() + i * step_x;
+				int y = (int)from.y() + i * step_y;
+				c_board_position pos = { (uint8_t)x, (uint8_t)y };
+				if (!game_state[pos].is_nil())
 					return false; // Path is blocked
 			}
 
@@ -182,7 +183,7 @@ namespace bayou
 		{
 			c_board_position from = move.from();
 			c_board_position to = move.to();
-			c_piece_state const& moved_piece = game_state.get_piece(from.x(), from.y());
+			c_piece_state const& moved_piece = game_state[from];
 			if (moved_piece.is_nil())
 			{
 				return false;
@@ -192,7 +193,7 @@ namespace bayou
 				return false;
 
 			// Copy the current game state
-			out_game_state = game_state;
+			//out_game_state = game_state;
 
 			// Move the piece
 			out_game_state.move_piece(from, to);

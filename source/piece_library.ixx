@@ -1,6 +1,8 @@
 export module bayou.piece_library;
 import bayou.piece;
 import stk.ds;
+import std.core;
+import <cassert>;
 
 using namespace stk;
 using namespace stk::ds;
@@ -32,10 +34,7 @@ namespace bayou
 
 		c_piece& operator[](uint16_t index)
 		{
-			if (index >= m_library.count())
-			{
-				return c_piece::nil;
-			}
+			assert(index < m_library.count());
 			return m_library[index];
 		}
 

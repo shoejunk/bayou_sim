@@ -14,7 +14,7 @@ int main()
 	c_piece_library library;
 	c_piece rook{ "rook" };
 	library.add(rook);
-	c_game_state game_state{ library };
+	c_game_state game_state;
 	c_board_position board_position{ 3, 6 };
 	uint8_t x = board_position.x();
 	game_state[{0, 0}] = { 1, 0, {0, 0} };

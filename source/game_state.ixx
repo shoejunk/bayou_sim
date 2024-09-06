@@ -1,7 +1,6 @@
 export module bayou.game_state;
 import bayou.piece_state;
 import bayou.board_position;
-import bayou.piece_library;
 import stk.ds;
 import std.core;
 import <cassert>;
@@ -18,8 +17,32 @@ namespace bayou
 		static constexpr int hand_size = 4;
 		static constexpr int max_deck_size = 20;
 
-		c_game_state(c_piece_library const& library)
-			: m_library(library)
+		// Copy constructor
+		c_game_state(c_game_state const& other)
+		{
+			// Copy the rest:
+			for (int i = 0; i < num_players; ++i)
+			{
+				m_steam[i] = other.m_steam[i];
+				for (int j = 0; j < hand_size; ++j)
+				{
+					m_hands[i][j] = other.m_hands[i][j];
+				}
+			}
+			for (int y = 0; y < board_size; ++y)
+			{
+				for (int x = 0; x < board_size; ++x)
+				{
+					m_pieces[y][x] = other.m_pieces[y][x];
+				}
+			}
+			for (int i = 0; i < num_players; ++i)
+			{
+				m_decks[i] = other.m_decks[i];
+			}
+		}
+
+		c_game_state()
 		{
 			for (int i = 0; i < num_players; ++i)
 			{
@@ -55,13 +78,6 @@ namespace bayou
 		{
 			assert(player >= 0 && player < num_players);
 			m_steam[player] = value;
-		}
-
-		// Getter and setter for pieces
-		const c_piece_state& get_piece(int x, int y) const
-		{
-			assert(x >= 0 && x < board_size && y >= 0 && y < board_size);
-			return m_pieces[y][x];
 		}
 
 		void set_piece(int x, int y, c_piece_state const& piece)
@@ -131,7 +147,6 @@ namespace bayou
 		}
 
 	private:
-		c_piece_library const& m_library;
 		uint8_t m_steam[num_players];
 		c_piece_state m_pieces[board_size][board_size];
 		uint16_t m_hands[num_players][hand_size];
