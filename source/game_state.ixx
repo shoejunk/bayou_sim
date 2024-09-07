@@ -140,10 +140,14 @@ namespace bayou
 			return drawn_card;
 		}
 
-
 		c_piece_state& place_piece(uint16_t piece_type, uint8_t owner, c_board_position pos)
 		{
 			(*this)[pos] = c_piece_state(piece_type, owner, pos);
+		}
+
+		bool is_valid_position(c_board_position pos) const
+		{
+			return pos.x() >= 0 && pos.x() < board_size && pos.y() >= 0 && pos.y() < board_size;
 		}
 
 	private:

@@ -1,6 +1,7 @@
 export module bayou.piece;
-import bayou.move;
 import bayou.ability;
+import bayou.game_state;
+import bayou.move;
 import stk.hash;
 import stk.ds;
 import std.core;
@@ -38,6 +39,23 @@ namespace bayou
 		{
 			strncpy(m_name, new_name, max_name_length);
 			m_name[max_name_length] = '\0'; // Ensure null-termination
+		}
+
+		bool try_move(c_move const& move, c_game_state& game_state) const
+		{
+			for (c_ability* ability : m_abilities)
+			{
+				if (ability->try_move(move, game_state))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		void add_ability(c_ability* ability)
+		{
+			m_abilities.push_back(ability);
 		}
 
 		//void get_moves(std::vector<c_move>& out_moves) { return m_moves; }

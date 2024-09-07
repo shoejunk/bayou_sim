@@ -23,19 +23,18 @@ namespace bayou
 			return m_library.append(piece);
 		}
 
-		c_piece const& operator[](uint16_t index) const
+		c_piece const* operator[](uint16_t index) const
 		{
 			if (index >= m_library.count())
 			{
-				return c_piece::nil;
+				return nullptr;
 			}
-			return m_library[index];
+			return &m_library[index];
 		}
 
-		c_piece& operator[](uint16_t index)
+		uint16_t count() const
 		{
-			assert(index < m_library.count());
-			return m_library[index];
+			return m_library.count();
 		}
 
 	private:

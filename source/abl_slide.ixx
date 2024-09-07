@@ -179,11 +179,11 @@ namespace bayou
 			return true;
 		}
 
-		bool try_move(c_move move, c_game_state const& game_state, c_game_state& out_game_state) const override
+		bool try_move(c_move move, c_game_state& game_state) const override
 		{
 			c_board_position from = move.from();
 			c_board_position to = move.to();
-			c_piece_state const& moved_piece = game_state[from];
+			c_piece_state& moved_piece = game_state[from];
 			if (moved_piece.is_nil())
 			{
 				return false;
@@ -192,11 +192,8 @@ namespace bayou
 			if (!validate_move(move, game_state))
 				return false;
 
-			// Copy the current game state
-			//out_game_state = game_state;
-
 			// Move the piece
-			out_game_state.move_piece(from, to);
+			game_state.move_piece(from, to);
 
 			return true;
 		}

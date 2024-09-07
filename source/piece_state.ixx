@@ -31,6 +31,7 @@ namespace bayou
 		c_board_position position() const { return m_position; }
 		void move(c_board_position to) { m_position = to; }
 		bool is_nil() const { return m_piece_type == 0; }
+		uint16_t piece_type() const { return m_piece_type; }
 
 	private:
 		uint16_t m_piece_type;
