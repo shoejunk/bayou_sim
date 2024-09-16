@@ -20,5 +20,6 @@ int main()
 		return 1;
 	}
 
+	delete sim;
 	return 0;
 }

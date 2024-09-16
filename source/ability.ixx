@@ -2,7 +2,7 @@ export module bayou.ability;
 import bayou.game_state;
 import bayou.move;
 import bayou.piece_state;
-import std.core;
+import std;
 
 namespace bayou
 {
