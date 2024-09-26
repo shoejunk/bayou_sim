@@ -7,7 +7,7 @@ import bayou.move;
 import bayou.piece;
 import bayou.piece_library;
 import bayou.piece_state;
-import std.core;
+import std;
 import stk.math;
 
 using namespace stk;
@@ -35,7 +35,7 @@ namespace bayou
 			}
 		}
 
-		bool place_piece(uint16_t piece_type, uint8_t owner, c_board_position pos)
+		bool place_piece(std::uint16_t piece_type, std::uint8_t owner, c_board_position pos)
 		{
 			if (!m_game_state[pos].is_nil())
 			{

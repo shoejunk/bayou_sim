@@ -2,10 +2,9 @@ export module bayou.piece_state;
 import bayou.board_position;
 import stk.ds;
 import stk.hash;
-import std.core;
+import std;
 
 using namespace stk;
-using namespace stk::ds;
 
 namespace bayou
 {
@@ -21,7 +20,7 @@ namespace bayou
 		{
 		}
 
-		c_piece_state(uint16_t piece_type, uint8_t owner, c_board_position pos)
+		c_piece_state(std::uint16_t piece_type, std::uint8_t owner, c_board_position pos)
 			: m_piece_type(piece_type)
 			, m_owner(owner)
 			, m_position(pos)
@@ -34,10 +33,10 @@ namespace bayou
 		uint16_t piece_type() const { return m_piece_type; }
 
 	private:
-		uint16_t m_piece_type;
-		uint8_t m_owner : 1;
-		fixed_vector<c_hash, 8> m_tags;
-		fixed_vector<std::pair<c_hash, uint32_t>, 8> m_attributes;
+		std::uint16_t m_piece_type;
+		std::uint8_t m_owner : 1;
+		c_fixed_vector<c_hash, 8> m_tags;
+		c_fixed_vector<std::pair<c_hash, std::uint32_t>, 8> m_attributes;
 		c_board_position m_position;
 	};
 

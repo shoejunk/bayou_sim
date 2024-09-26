@@ -4,10 +4,9 @@ import bayou.game_state;
 import bayou.move;
 import stk.hash;
 import stk.ds;
-import std.core;
+import std;
 
 using namespace stk;
-using namespace stk::ds;
 
 namespace bayou
 {
@@ -37,7 +36,7 @@ namespace bayou
 		// Setter for the name
 		void set_name(const char* new_name)
 		{
-			strncpy(m_name, new_name, max_name_length);
+			std::strncpy(m_name, new_name, max_name_length);
 			m_name[max_name_length] = '\0'; // Ensure null-termination
 		}
 
@@ -62,8 +61,8 @@ namespace bayou
 
 	private:
 		char m_name[max_name_length + 1]; // +1 for null terminator
-		fixed_vector<c_hash, 8> m_tags;
-		fixed_vector<std::pair<c_hash, uint32_t>, 8> m_attributes;
+		c_fixed_vector<c_hash, 8> m_tags;
+		c_fixed_vector<std::pair<c_hash, uint32_t>, 8> m_attributes;
 		std::vector<c_ability*> m_abilities;
 	};
 

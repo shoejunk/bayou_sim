@@ -2,10 +2,9 @@ export module bayou.game_state;
 import bayou.piece_state;
 import bayou.board_position;
 import stk.ds;
-import std.core;
+import std;
 import <cassert>;
 using namespace stk;
-using namespace stk::ds;
 
 namespace bayou
 {
@@ -13,7 +12,7 @@ namespace bayou
 	{
 	public:
 		static constexpr int num_players = 2;
-		static constexpr uint8_t board_size = 8;
+		static constexpr std::uint8_t board_size = 8;
 		static constexpr int hand_size = 4;
 		static constexpr int max_deck_size = 20;
 
@@ -94,7 +93,7 @@ namespace bayou
 		}
 
 		// Getter and setter for hands
-		uint16_t get_hand(int player, int index) const
+		std::uint16_t get_hand(int player, int index) const
 		{
 			assert(player >= 0 && player < num_players);
 			assert(index >= 0 && index < hand_size);
@@ -109,20 +108,20 @@ namespace bayou
 		}
 
 		// Getter and setter for decks
-		const fixed_vector<uint16_t, max_deck_size>& get_deck(int player) const
+		const c_fixed_vector<std::uint16_t, max_deck_size>& get_deck(int player) const
 		{
 			assert(player >= 0 && player < num_players);
 			return m_decks[player];
 		}
 
-		void set_deck(int player, const fixed_vector<uint16_t, max_deck_size>& deck)
+		void set_deck(int player, const c_fixed_vector<std::uint16_t, max_deck_size>& deck)
 		{
 			assert(player >= 0 && player < num_players);
 			m_decks[player] = deck;
 		}
 
 		// Deck manipulation methods
-		void add_to_deck(int player, uint16_t card)
+		void add_to_deck(int player, std::uint16_t card)
 		{
 			assert(player >= 0 && player < num_players);
 			bool success = m_decks[player].append(card);
@@ -140,7 +139,7 @@ namespace bayou
 			return drawn_card;
 		}
 
-		c_piece_state& place_piece(uint16_t piece_type, uint8_t owner, c_board_position pos)
+		c_piece_state& place_piece(std::uint16_t piece_type, std::uint8_t owner, c_board_position pos)
 		{
 			(*this)[pos] = c_piece_state(piece_type, owner, pos);
 		}
@@ -151,9 +150,9 @@ namespace bayou
 		}
 
 	private:
-		uint8_t m_steam[num_players];
+		std::uint8_t m_steam[num_players];
 		c_piece_state m_pieces[board_size][board_size];
-		uint16_t m_hands[num_players][hand_size];
-		fixed_vector<uint16_t, max_deck_size> m_decks[num_players];
+		std::uint16_t m_hands[num_players][hand_size];
+		c_fixed_vector<std::uint16_t, max_deck_size> m_decks[num_players];
 	};
 }

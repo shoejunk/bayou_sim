@@ -1,11 +1,10 @@
 export module bayou.piece_library;
 import bayou.piece;
 import stk.ds;
-import std.core;
+import std;
 import <cassert>;
 
 using namespace stk;
-using namespace stk::ds;
 
 namespace bayou
 {
@@ -23,7 +22,7 @@ namespace bayou
 			return m_library.append(piece);
 		}
 
-		c_piece const* operator[](uint16_t index) const
+		c_piece const* operator[](std::uint16_t index) const
 		{
 			if (index >= m_library.count())
 			{
@@ -38,6 +37,6 @@ namespace bayou
 		}
 
 	private:
-		fixed_vector<c_piece, std::numeric_limits<uint16_t>::max() + 1> m_library;
+		c_fixed_vector<c_piece, std::numeric_limits<std::uint16_t>::max() + 1> m_library;
 	};
 }

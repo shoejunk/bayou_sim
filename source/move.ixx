@@ -4,7 +4,6 @@ import stk.hash;
 import stk.ds;
 
 using namespace stk;
-using namespace stk::ds;
 
 namespace bayou
 {

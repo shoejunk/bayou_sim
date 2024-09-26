@@ -5,7 +5,7 @@ import bayou.piece_state;
 import bayou.board_position;
 import bayou.move;
 import stk.math;
-import std.core;
+import std;
 
 using namespace stk;
 
